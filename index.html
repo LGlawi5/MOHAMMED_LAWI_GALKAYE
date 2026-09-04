@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Lawi Galkaye — Cybersecurity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12151a;
+    --panel:#171b21;
+    --offwhite:#EDEAE0;
+    --steel:#7c8894;
+    --steel-dim:#4a5560;
+    --gold:#C79A4B;
+    --rust:#a3543f;
+    --line:#2a2f37;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--offwhite);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  ::selection{background:var(--gold);color:var(--ink);}
+  a{color:var(--gold);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  .wrap{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .lineno{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--steel-dim);
+    text-align:right;
+    padding-right:16px;
+    border-right:1px solid var(--line);
+    user-select:none;
+  }
+  .content{padding-left:20px;padding-bottom:8px;}
+
+  header.hero{padding:72px 0 48px;}
+  .prompt{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--steel);
+    margin-bottom:18px;
+  }
+  .prompt .caret{
+    display:inline-block;
+    width:8px;height:14px;
+    background:var(--gold);
+    margin-left:2px;
+    animation:blink 1.1s steps(1) infinite;
+    vertical-align:-2px;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  h1{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:clamp(28px,4.2vw,44px);
+    line-height:1.15;
+    margin:0 0 14px;
+    color:var(--offwhite);
+    letter-spacing:-0.01em;
+  }
+  .role{
+    font-size:17px;
+    color:var(--gold);
+    font-weight:500;
+    margin-bottom:22px;
+  }
+  .lede{
+    max-width:62ch;
+    color:#c7c2b6;
+    font-size:15.5px;
+  }
+  .contact-row{
+    display:flex;flex-wrap:wrap;gap:18px;
+    margin-top:26px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--steel);
+  }
+  .contact-row span{white-space:nowrap;}
+
+  section{padding:40px 0;border-top:1px solid var(--line);}
+  .sec-head{
+    display:flex;align-items:baseline;gap:12px;
+    margin-bottom:26px;
+  }
+  .sec-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--steel-dim);
+  }
+  h2{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:20px;
+    font-weight:600;
+    margin:0;
+    color:var(--offwhite);
+  }
+
+  /* skills */
+  .skill-groups{display:grid;gap:22px;}
+  .skill-group{
+    border-left:2px solid var(--line);
+    padding-left:18px;
+  }
+  .skill-group h3{
+    font-size:13.5px;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--gold);
+    font-weight:500;
+    margin:0 0 8px;
+  }
+  .skill-group p{
+    margin:0;
+    color:#c7c2b6;
+    font-size:14.5px;
+  }
+
+  /* experience */
+  .job{margin-bottom:6px;}
+  .job-head{
+    display:flex;justify-content:space-between;flex-wrap:wrap;
+    gap:6px 16px;
+    margin-bottom:6px;
+  }
+  .job-title{font-weight:600;color:var(--offwhite);font-size:16px;}
+  .job-org{color:var(--steel);font-size:14px;}
+  .job-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--steel-dim);
+    white-space:nowrap;
+  }
+  .job ul{margin:10px 0 0;padding-left:18px;color:#c7c2b6;font-size:14.5px;}
+  .job li{margin-bottom:6px;}
+
+  /* education / certs */
+  .cert-list{display:grid;gap:10px;}
+  .cert-item{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .cert-item:last-child{border-bottom:none;}
+  .cert-name{color:var(--offwhite);}
+  .cert-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--steel-dim);
+    white-space:nowrap;
+  }
+
+  /* interests */
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--steel);
+    border:1px solid var(--line);
+    padding:5px 10px;
+    border-radius:2px;
+  }
+
+  /* projects */
+  .project-grid{display:grid;gap:16px;}
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:18px 20px;
+  }
+  .project-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    flex-wrap:wrap;gap:6px 16px;
+    margin-bottom:8px;
+  }
+  .project-name{font-weight:600;color:var(--offwhite);font-size:15.5px;}
+  .project-status{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.02em;
+    padding:2px 8px;
+    border:1px solid var(--line);
+    color:var(--steel);
+  }
+  .project-status.live{color:var(--gold);border-color:var(--gold);}
+  .project-card p{margin:0 0 10px;color:#c7c2b6;font-size:14.5px;}
+  .project-stack{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--steel-dim);
+  }
+  .project-link{font-family:'IBM Plex Mono',monospace;font-size:13px;}
+
+  /* referees */
+  .ref-grid{display:grid;gap:20px;grid-template-columns:1fr 1fr;}
+  .ref-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:16px 18px;
+  }
+  .ref-name{font-weight:600;color:var(--offwhite);font-size:15px;margin-bottom:2px;}
+  .ref-title{color:var(--gold);font-size:13px;margin-bottom:8px;}
+  .ref-meta{font-size:13px;color:var(--steel);line-height:1.7;}
+  .ref-meta a{color:var(--steel);}
+
+  footer{
+    padding:32px 0 60px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--steel-dim);
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:640px){
+    .wrap{grid-template-columns:32px 1fr;padding:0 16px;}
+    .content{padding-left:12px;}
+    .ref-grid{grid-template-columns:1fr;}
+    header.hero{padding:48px 0 36px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .prompt .caret{animation:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lineno" aria-hidden="true">
+    01<br>02<br>03<br>04<br>05<br>06<br>07<br>08<br>09<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20
+  </div>
+  <div class="content">
+
+    <header class="hero">
+      <div class="prompt">visitor@network:~$ whoami<span class="caret"></span></div>
+      <h1>Mohammed Lawi Galkaye</h1>
+      <div class="role">Cybersecurity Professional — Network Security &amp; Threat Analysis</div>
+      <p class="lede">Building a career at the intersection of network defense, incident response, and digital forensics — with a focus on strengthening cybersecurity capacity across Nigeria and beyond.</p>
+      <div class="contact-row">
+        <span>Gashua, Bade LGA, Yobe State, Nigeria</span>
+        <span>+234 816 848 7926</span>
+        <span><a href="mailto:lawigalkaye2019@gmail.com">lawigalkaye2019@gmail.com</a></span>
+      </div>
+    </header>
+
+    <section id="profile">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>profile</h2></div>
+      <p class="lede" style="max-width:68ch;">A dedicated cybersecurity professional with a strong academic foundation, committed to advancing cybersecurity initiatives in Nigeria, across Africa, and globally. Motivated to exceed expectations, leveraging technical skills to protect digital environments and support organizational goals.</p>
+    </section>
+
+    <section id="skills">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>skills --list</h2></div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>Defense &amp; Monitoring</h3>
+          <p>Network security, firewall/IDS/IPS management, endpoint protection, SIEM tools for real-time event analysis, and identity &amp; access management.</p>
+        </div>
+        <div class="skill-group">
+          <h3>Offense &amp; Assessment</h3>
+          <p>Penetration testing, vulnerability assessment, threat analysis and risk management, digital forensics analysis on malicious code and security incidents.</p>
+        </div>
+        <div class="skill-group">
+          <h3>Response &amp; Governance</h3>
+          <p>Incident response planning and execution, data loss prevention strategy, compliance with GDPR, ISO 27001, NIST, and PCI-DSS, and security awareness training design.</p>
+        </div>
+        <div class="skill-group">
+          <h3>Technical Foundation</h3>
+          <p>Windows &amp; Linux administration, cryptographic protocols, VPNs and network troubleshooting, virtualization (VMware, Hyper-V, VirtualBox), and programming in C, C++, Java, JavaScript, and Python.</p>
+        </div>
+        <div class="skill-group">
+          <h3>Application Development</h3>
+          <p>Mobile app development (Android / cross-platform), UI/UX and user flow design, API integration and backend communication, debugging and app optimization, and version control with Git/GitHub.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>experience --log</h2></div>
+      <div class="job" style="margin-bottom:32px;">
+        <div class="job-head">
+          <div>
+            <div class="job-title">Technical Officer &amp; JAMB User</div>
+            <div class="job-org">ICT Department, College of Education, Waka Biu</div>
+          </div>
+          <div class="job-date">Current</div>
+        </div>
+        <ul>
+          <li>Manage ICT operations within the department, including JAMB-related systems and processes.</li>
+          <li>Provide ongoing technical support and infrastructure maintenance for the institution.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-head">
+          <div>
+            <div class="job-title">ICT Intern — SIWES Program</div>
+            <div class="job-org">Nigerian Army University Biu, ICT Center · Biu, Nigeria</div>
+          </div>
+          <div class="job-date">Jul 2024 – Jan 2025</div>
+        </div>
+        <ul>
+          <li>Gained hands-on experience in cybersecurity, networking, and IT support through the Student Industrial Work Experience Scheme.</li>
+          <li>Assisted in configuring and maintaining network infrastructure, including routers, switches, and firewalls.</li>
+          <li>Provided technical support to staff and students, troubleshooting hardware and software issues.</li>
+          <li>Collaborated with the ICT team on deploying and managing security protocols to protect sensitive information.</li>
+          <li>Contributed to documentation of IT processes and user manuals.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>education &amp; certifications</h2></div>
+      <div class="cert-list">
+        <div class="cert-item"><span class="cert-name">BSc Cyber Security — Nigerian Army University Biu, Borno State, Nigeria</span><span class="cert-date">2019 – 2025</span></div>
+        <div class="cert-item"><span class="cert-name">Cyber Security — Importance, Tips, Myths and Cyber Threats</span><span class="cert-date">Sep 2023</span></div>
+        <div class="cert-item"><span class="cert-name">Master Course — Cyber Security Vulnerability Management</span><span class="cert-date">Sep 2023</span></div>
+        <div class="cert-item"><span class="cert-name">Computer Virus — Definition, Types, Spread and Prevention</span><span class="cert-date">Sep 2023</span></div>
+        <div class="cert-item"><span class="cert-name">File and Folder Management Using PowerShell</span><span class="cert-date">Sep 2023</span></div>
+        <div class="cert-item"><span class="cert-name">NMAP Advanced Technique Course A–Z on Network Scan</span><span class="cert-date">Sep 2023</span></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>projects --live</h2></div>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">DDoS Detection System</span>
+            <span class="project-status">offline / research build</span>
+          </div>
+          <p>A deep learning–based system for detecting Distributed Denial-of-Service attacks in real time, combining CNN and LSTM models to capture both spatial traffic patterns and time-based attack behavior.</p>
+          <div class="project-stack">CNN · LSTM · Deep Learning · Network Traffic Analysis</div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">Teaching Practice Payment &amp; Management System</span>
+            <span class="project-status">offline build</span>
+          </div>
+          <p>A system built to manage and process teaching practice (TP) payments and related administrative workflows.</p>
+          <div class="project-stack">Application Development</div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">TLD Initiative</span>
+            <span class="project-status live">live</span>
+          </div>
+          <p>Website built for the TLD Initiative organization.</p>
+          <div class="project-link"><a href="https://tldinitiative.org" target="_blank" rel="noopener">tldinitiative.org →</a></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">RCIPD</span>
+            <span class="project-status live">live</span>
+          </div>
+          <p>Website built for the RCIPD organization.</p>
+          <div class="project-link"><a href="https://rcipd.org.ng" target="_blank" rel="noopener">rcipd.org.ng →</a></div>
+        </div>
+        <div class="project-card">
+          <div class="project-head">
+            <span class="project-name">Outlier Cybersecurity</span>
+            <span class="project-status live">live</span>
+          </div>
+          <p>Website built for Outlier Cybersecurity.</p>
+          <div class="project-link"><a href="https://outlier-cybersecurity.com.ng" target="_blank" rel="noopener">outlier-cybersecurity.com.ng →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>interests</h2></div>
+      <div class="tag-cloud">
+        <span class="tag">Ethical Hacking</span>
+        <span class="tag">Coding &amp; Programming</span>
+        <span class="tag">Tech Blogging</span>
+        <span class="tag">Strategic / Puzzle Gaming</span>
+        <span class="tag">Security Forums</span>
+        <span class="tag">Cybersecurity Conferences</span>
+        <span class="tag">Tech Podcasts</span>
+        <span class="tag">Home Labs</span>
+        <span class="tag">Puzzle Solving</span>
+        <span class="tag">Tech Volunteering</span>
+      </div>
+    </section>
+
+    <section id="referees">
+      <div class="sec-head"><span class="sec-tag">$</span><h2>referees</h2></div>
+      <div class="ref-grid">
+        <div class="ref-card">
+          <div class="ref-name">Anes Aliyu Aihong</div>
+          <div class="ref-title">Technical Officer — Skool Media, Federal Ministry of Education</div>
+          <div class="ref-meta">
+            Skool Media, Federal Government College Buni Yadi, Yobe State<br>
+            09036200644<br>
+            <a href="mailto:anesaliyu123@gmail.com">anesaliyu123@gmail.com</a>
+          </div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-name">Muhammad Yusuf</div>
+          <div class="ref-title">CISSP — ENGAUSA Global Tech Hub</div>
+          <div class="ref-meta">
+            09122720462<br>
+            <a href="mailto:muhammady1922@gmail.com">muhammady1922@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      mohammed lawi galkaye · gashua, yobe state, nigeria
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>
